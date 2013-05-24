@@ -74,7 +74,7 @@ public class ToastBuilder {
 
 		Point displaySize = getDisplaySize(((WindowManager)ctx.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay());
 
-		return xYpointerToast(ctx, ArrowPosition.BOTTOM, (viewLocation[0]+viewToPoint.getWidth()/2)-displaySize.x/2, displaySize.y- viewLocation[1], text);
+		return xYpointerToast(ctx, ArrowPosition.BOTTOM, (viewLocation[0]+viewToPoint.getWidth()/2), viewLocation[1], text);
 	}
 	
 	public static Toast topPointerToast(Context ctx, View viewToPoint, String text) {
