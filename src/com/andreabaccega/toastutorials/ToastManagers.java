@@ -45,6 +45,14 @@ public class ToastManagers {
 		e.commit();
 	}
 	
+	public Toast showHelpToast( Context ctx, IToastIdentifier toastIdentifier, ToastView.ArrowPosition pos, View viewToBind) {
+		return showHelpToast(ctx, toastIdentifier.getId(), toastIdentifier.getMaxViews(), toastIdentifier.getText(ctx), pos, viewToBind);
+	}
+	
+	public Toast showHelpToast( Context ctx, IToastIdentifier toastIdentifier, ToastView.ArrowPosition pos, int xPos, int yPos) {
+		return showHelpToast(ctx, toastIdentifier.getId(), toastIdentifier.getMaxViews(), toastIdentifier.getText(ctx), pos, xPos, yPos);
+	}
+	
 	
 	public Toast showHelpToast( Context ctx, int idHelp, String helpText, ToastView.ArrowPosition pos, View viewToBind ) {
 		return showHelpToast(ctx, idHelp, defaultMaxViews, helpText, pos, viewToBind);
@@ -81,7 +89,7 @@ public class ToastManagers {
 		final Toast toRet;
 		if ( isGoingToBeShown(idHelp, maxViews) ) {
 			toRet = ToastBuilder.xYpointerToast(ctx, pos, x, y, helpText);
-			
+			toRet.show();
 			toRet.show();
 			doIncrement(idHelp);
 			
