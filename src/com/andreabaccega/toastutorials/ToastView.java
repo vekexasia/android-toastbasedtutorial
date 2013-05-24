@@ -43,12 +43,12 @@ public class ToastView extends TextView {
 
 		//final TypedArray attributes = obtainStyledAttributes( R.style.AppTheme, R.styleable.LinesCircularProgressBar);//new int[]{R.attr.arc_color, R.attr.litecircle_color, R.attr.litecircle_color_overduetimer, R.attr.marker_color, R.attr.marker_step});
 		
-		final TypedArray attributes = context.obtainStyledAttributes(com.example.com.andreabaccega.toastutorials.R.styleable.HelpToast);
+		final TypedArray attributes = context.obtainStyledAttributes(com.andreabaccega.toastutorials.R.styleable.HelpToast);
 		
-		setTextAppearance(context, attributes.getResourceId(com.example.com.andreabaccega.toastutorials.R.styleable.HelpToast_helpToastAppearance, android.R.style.TextAppearance));
+		setTextAppearance(context, attributes.getResourceId(com.andreabaccega.toastutorials.R.styleable.HelpToast_helpToastAppearance, android.R.style.TextAppearance));
 		
 		
-		shadowSizepx = attributes.getDimensionPixelSize(com.example.com.andreabaccega.toastutorials.R.styleable.HelpToast_helpToastShadowDimension, 10);
+		shadowSizepx = attributes.getDimensionPixelSize(com.andreabaccega.toastutorials.R.styleable.HelpToast_helpToastShadowDimension, 10);
 		
 		aPos = position;
 		pointerSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15f, getResources().getDisplayMetrics());
@@ -59,7 +59,7 @@ public class ToastView extends TextView {
 		bgPaint.setAntiAlias(true);
 		bgPaint.setStyle(Paint.Style.FILL);
 		bgPaint.setShadowLayer(shadowSizepx, 0.0f, 0.0f, 0xFF000000);  
-		bgPaint.setColor(attributes.getColor(com.example.com.andreabaccega.toastutorials.R.styleable.HelpToast_helpToastbgColor, Color.BLUE));
+		bgPaint.setColor(attributes.getColor(com.andreabaccega.toastutorials.R.styleable.HelpToast_helpToastbgColor, Color.BLUE));
 		
 		attributes.recycle();
 		
