@@ -16,6 +16,7 @@ import android.graphics.Region;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.View;
 import android.widget.TextView;
 
 public class ToastView extends TextView {
@@ -60,7 +61,7 @@ public class ToastView extends TextView {
 		bgPaint.setStyle(Paint.Style.FILL);
 		bgPaint.setShadowLayer(shadowSizepx, 0.0f, 0.0f, 0xFF000000);  
 		bgPaint.setColor(attributes.getColor(com.andreabaccega.toastutorials.R.styleable.HelpToast_helpToastbgColor, Color.BLUE));
-		
+
 		attributes.recycle();
 		
 		
@@ -68,6 +69,7 @@ public class ToastView extends TextView {
 		vertices[1] = new Point();
 		vertices[2] = new Point();
 		setArrowPosition(aPos);
+
 	}
 
 	/**
@@ -110,6 +112,8 @@ public class ToastView extends TextView {
 		mRect.right  = getMeasuredWidth();
 		mRect.bottom = getMeasuredHeight();
 
+
+
 		tmpRectf.left   = 0;
 		tmpRectf.top    = 0;
 		tmpRectf.right  = getMeasuredWidth();
@@ -131,10 +135,10 @@ public class ToastView extends TextView {
 		}
 		
 		
-		mRect.top +=shadowSizepx;
-		mRect.left +=shadowSizepx;
+		mRect.top    +=shadowSizepx;
+		mRect.left   +=shadowSizepx;
 		mRect.bottom -=shadowSizepx;
-		mRect.right -=shadowSizepx;
+		mRect.right  -=shadowSizepx;
 		
 		
 		switch (aPos) {
@@ -152,28 +156,26 @@ public class ToastView extends TextView {
 			tmpRectf.top = tmpRectf.bottom - pointerSize -shadowSizepx;
 			break;
 		}
-		
-		
+
 
 		mBackground = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
 
 
 		mCanvas.setBitmap(mBackground);
-		
-		mCanvas.drawRoundRect(mRect, roundedCornerRadius, roundedCornerRadius, bgPaint);
+        mCanvas.drawRoundRect(mRect, roundedCornerRadius, roundedCornerRadius, bgPaint);
+        mCanvas.save();
 
 		mCanvas.clipRect(tmpRectf, Region.Op.REPLACE);
-		
-		// Building Vertixes for the pointer.
+
+        // Building Vertixes for the pointer.
 		fixVertices();
 		
-		
+		// Disegna la freccetta di merda
 		drawArrows(vertices, mCanvas, bgPaint);
 
-		
+        mCanvas.restore();
 
 		setBackgroundDrawable(new BitmapDrawable(mBackground));
-		Log.d("ANTONI", "Width: "+getMeasuredWidth()+" height:"+getMeasuredHeight());
 
 
 	}
